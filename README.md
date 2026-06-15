@@ -12,6 +12,7 @@ A 4-way traffic intersection simulator built with **Python + Pygame** that dynam
 - **Adaptive green time:** while one signal is red, the simulator counts the number and type of vehicles waiting in the *next* lane to go green and computes the required green duration:
 
   ```
+
   greenTime = ceil( (cars*2.25 + rickshaws*2.25 + buses*2.5 + trucks*2.5 + bikes*1.5 + ambulances*1) / (lanes + 1) )
   ```
 
