@@ -269,7 +269,6 @@ def initialize():
     signals.append(ts3)
     ts4 = TrafficSignal(defaultRed, defaultYellow, defaultGreen, defaultMinimum, defaultMaximum)
     signals.append(ts4)
-    repeat()
 
 # Set time according to formula
 def setTime():
@@ -426,7 +425,8 @@ class Main:
     thread4.daemon = True
     thread4.start()
 
-    thread2 = threading.Thread(name="initialization",target=initialize, args=())    # initialization
+    initialize()
+    thread2 = threading.Thread(name="signal-cycle", target=repeat)
     thread2.daemon = True
     thread2.start()
 
