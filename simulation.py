@@ -23,6 +23,7 @@ signals = []
 noOfSignals = 4
 simTime = 300       # change this to change time of simulation
 timeElapsed = 0
+simulation_finished = threading.Event()
 
 currentGreen = 0   # Indicates which signal is green
 nextGreen = (currentGreen+1)%noOfSignals
@@ -417,7 +418,8 @@ def simulationTime():
             print('Total vehicles passed: ',totalVehicles)
             print('Total time passed: ',timeElapsed)
             print('No. of vehicles passed per unit time: ',(float(totalVehicles)/float(timeElapsed)))
-            os._exit(1)
+            simulation_finished.set()
+            return
     
 
 class Main:
@@ -455,7 +457,7 @@ class Main:
     thread3.daemon = True
     thread3.start()
 
-    while True:
+    while not simulation_finished.is_set():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -506,6 +508,8 @@ class Main:
             # vehicle.render(screen)
             vehicle.move()
         pygame.display.update()
+
+    pygame.quit()
 
 Main()
 
