@@ -407,8 +407,8 @@ def generateVehicles():
 def simulationTime():
     global timeElapsed, simTime
     while(True):
-        timeElapsed += 1
         time.sleep(1)
+        timeElapsed += 1
         if(timeElapsed==simTime):
             totalVehicles = 0
             print('Lane-wise Vehicle Counts')
