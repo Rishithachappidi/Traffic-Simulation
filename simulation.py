@@ -1,4 +1,5 @@
 
+import argparse
 import random
 import math
 import time
@@ -21,7 +22,17 @@ defaultMaximum = 60
 
 signals = []
 noOfSignals = 4
-simTime = 300       # change this to change time of simulation
+def positive_seconds(value):
+    seconds = int(value)
+    if seconds < 1:
+        raise argparse.ArgumentTypeError('duration must be at least one second')
+    return seconds
+
+
+parser = argparse.ArgumentParser(description='Run the adaptive traffic simulation.')
+parser.add_argument('--duration', type=positive_seconds, default=300, help='run time in seconds (default: 300)')
+options = parser.parse_args()
+simTime = options.duration
 timeElapsed = 0
 simulation_finished = threading.Event()
 
