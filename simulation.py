@@ -31,7 +31,9 @@ def positive_seconds(value):
 
 parser = argparse.ArgumentParser(description='Run the adaptive traffic simulation.')
 parser.add_argument('--duration', type=positive_seconds, default=300, help='run time in seconds (default: 300)')
+parser.add_argument('--seed', type=int, help='seed for vehicle generation')
 options = parser.parse_args()
+vehicle_rng = random.Random(options.seed)
 simTime = options.duration
 timeElapsed = 0
 simulation_finished = threading.Event()
@@ -381,7 +383,7 @@ def updateValues():
 def generateVehicles():
     no_a = 0
     while True:
-        vehicle_type = random.randint(0,5)
+        vehicle_type = vehicle_rng.randint(0,5)
         if (vehicle_type==5):
             no_a += 1
             if (no_a<10):
@@ -390,15 +392,15 @@ def generateVehicles():
         if(vehicle_type==4):
             lane_number = 0
         else:
-            lane_number = random.randint(0,1) + 1
+            lane_number = vehicle_rng.randint(0,1) + 1
         will_turn = 0
         if(lane_number==2):
-            temp = random.randint(0,4)
+            temp = vehicle_rng.randint(0,4)
             if(temp<=2):
                 will_turn = 1
             elif(temp>2):
                 will_turn = 0
-        temp = random.randint(0,999)
+        temp = vehicle_rng.randint(0,999)
         direction_number = 0
         a = [400,800,900,1000]
         if(temp<a[0]):
