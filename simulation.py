@@ -472,8 +472,11 @@ class Main:
 
     while not simulation_finished.is_set():
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+            if event.type == pygame.QUIT or (
+                event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE
+            ):
+                pygame.quit()
+                sys.exit(0)
 
         screen.blit(background,(0,0))   # display background in simulation
         for i in range(0,noOfSignals):  # display signal and set timer according to current status: green, yello, or red
