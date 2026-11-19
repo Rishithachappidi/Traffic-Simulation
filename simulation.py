@@ -424,9 +424,10 @@ def simulationTime():
         timeElapsed += 1
         if(timeElapsed==simTime):
             totalVehicles = 0
-            print('Lane-wise Vehicle Counts')
+            print('Vehicle crossings by approach')
             for i in range(noOfSignals):
-                print('Lane',i+1,':',vehicles[directionNumbers[i]]['crossed'])
+                approach = directionNumbers[i]
+                print(f"{approach}: {vehicles[approach]['crossed']}")
                 totalVehicles += vehicles[directionNumbers[i]]['crossed']
             print('Total vehicles passed: ',totalVehicles)
             print('Total time passed: ',timeElapsed)
