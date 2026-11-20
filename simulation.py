@@ -431,7 +431,7 @@ def simulationTime():
                 totalVehicles += vehicles[directionNumbers[i]]['crossed']
             print('Total vehicles passed: ',totalVehicles)
             print('Total time passed: ',timeElapsed)
-            print('No. of vehicles passed per unit time: ',(float(totalVehicles)/float(timeElapsed)))
+            print(f'Throughput: {totalVehicles / timeElapsed:.2f} vehicles/second')
             simulation_finished.set()
             return
     
