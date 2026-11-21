@@ -5,7 +5,6 @@ import math
 import time
 import threading
 
-import pygame
 import sys
 import os
 from pathlib import Path
@@ -89,6 +88,8 @@ rotationAngle = 3
 # Gap between vehicles
 gap = 15    # stopping gap
 gap2 = 20   # moving gap
+
+import pygame
 
 pygame.init()
 simulation = pygame.sprite.Group()
