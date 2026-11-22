@@ -97,3 +97,9 @@ This confirms the rendering, vehicle spawning/movement/turning, adaptive signal 
 ## Known limitation
 
 The emergency-vehicle response currently only **logs** ambulance crossings to the console (`"<direction> crossed"`) rather than actively overriding the signal cycle — the hook (`is_ambulance` flag) is in place, but the override logic (suspend current green, flash yellow elsewhere, force green for the ambulance's lane) is not yet wired into `repeat()`. Extending `setTime()`/`repeat()` to check `is_ambulance` before a signal turns red is the natural next step if full emergency pre-emption is needed.
+
+## Short simulation runs
+
+Run `python run_simulation.py --duration 15 --seed 42` for a 15-second run.
+The seed repeats vehicle generation choices. Rendering and thread timing can still vary.
+Press Escape or close the window to exit early.
