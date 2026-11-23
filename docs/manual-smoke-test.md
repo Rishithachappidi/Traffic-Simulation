@@ -12,3 +12,7 @@ Record the operating system, Python version, and Pygame version.
 - [ ] Close the window and check whether the process exits.
 
 For failures, record reproduction steps and the traceback.
+
+## Timed run
+
+Run `python run_simulation.py --duration 5 --seed 42`. Confirm the window closes on its own, the terminal reports crossing counts and throughput, and the process exits with status 0. Repeat and press Escape to check early exit.
